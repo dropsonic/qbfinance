@@ -57,8 +57,8 @@ namespace QBfinance_auto
                 return;
             }
 
-            _autoQuery = new AutoQuery(tbQueryUrl.Text, _proxies, _queries,
-                                       (int)udQueryInterval.Value, (int)udProxyTimeout.Value,
+            _autoQuery = new YandexAutoQuery(tbQueryUrl.Text, _proxies, _queries,
+                                       (int)udQueryInterval.Value, (int)udProxyTimeout.Value, (int)udMaxTime.Value,
                                        new Logger("log.txt"));
             _autoQuery.ProgressChanged += _autoQuery_ProgressChanged;
             lQueriesCount.Visible = true;

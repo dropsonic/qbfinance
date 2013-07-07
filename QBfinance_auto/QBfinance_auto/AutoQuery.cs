@@ -33,15 +33,16 @@ namespace QBfinance_auto
              * Один запрос идёт подряд с максимальной скоростью с разных IP-адресов.
              * Когда интервал истекает, то адрес прокси меняется на самый первый в списке,
              * и программа переключается на следующий запрос. */
-    public class AutoQuery
+    public abstract class AutoQuery
     {
         string[] _proxies;
         string[] _queries;
         int _currentQuery;
 
-        string _baseUrl;
+        protected string BaseUrl { get; set; }
         int _queryInterval;
         int _proxyTimeout;
+        int _maxTime;
 
         ILogger _logger;
 
@@ -51,13 +52,15 @@ namespace QBfinance_auto
         //int _ipCount = 0;
         int _queryCount = 0;
 
-        public AutoQuery(string baseUrl, string[] proxies, string[] queries, int queryInterval, int proxyTimeout, ILogger logger)
+        public AutoQuery(string baseUrl, string[] proxies, string[] queries,
+            int queryInterval, int proxyTimeout, int maxTime, ILogger logger)
         {
-            _baseUrl = baseUrl;
+            BaseUrl = baseUrl;
             _proxies = proxies;
             _queries = queries;
             _queryInterval = queryInterval;
             _proxyTimeout = proxyTimeout;
+            _maxTime = maxTime;
             _logger = logger;
         }
 
@@ -97,18 +100,12 @@ namespace QBfinance_auto
                     ProxyService.SetProxy(_proxies[i]);
                     currentProxy = _proxies[i];
 
-                    driver.Navigate().GoToUrl(_baseUrl);
-                    IWebElement text = driver.FindElement(By.Id("text"));
-                    text.Click();
-                    text.Clear();
-                    text.SendKeys(query);
-                    IWebElement button = driver.FindElement(By.CssSelector("input.b-form-button__input"));
-                    button.Click();
+                    DoQuery(driver, query);
                     
                     if (!CheckTitle(driver.Title, query))
-                        throw new WebException("Probably captcha");
+                        throw new WebException("Probably captcha (reason: title).");
                     if (!CheckUrl(driver.Url))
-                        throw new WebException("Probably captcha");
+                        throw new WebException("Probably captcha (reason: URL).");
 
                     driver.Manage().Cookies.DeleteAllCookies();
 
@@ -128,15 +125,14 @@ namespace QBfinance_auto
                 Thread.Sleep(_queryInterval - (int)Math.Round(delta));
         }
 
-        static bool CheckTitle(string title, string query)
-        {
-            return title != "Ой!";//title.Contains(query);
-        }
+        /// <summary>
+        /// Метод, определяющий логику действий на странице (ввод поискового запроса, нажатие кнопок и т.д.).
+        /// </summary>
+        protected abstract void DoQuery(IWebDriver driver, string query);
 
-        static bool CheckUrl(string url)
-        {
-            return url.Contains("yandsearch");
-        }
+        protected abstract bool CheckTitle(string title, string query);
+
+        protected abstract bool CheckUrl(string url);
 
         //public event EventHandler<AutoQueryProgressChangedEventArgs> ProgressChanged;
         public event AutoQueryProgressChangedDelegate ProgressChanged;

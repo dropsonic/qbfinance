@@ -46,8 +46,12 @@
             this.lCurrentQueryLabel = new System.Windows.Forms.Label();
             this.udProxyTimeout = new System.Windows.Forms.NumericUpDown();
             this.lProxyInterval = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.udMaxTime = new System.Windows.Forms.NumericUpDown();
+            this.lMaxTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.udQueryInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udProxyTimeout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.udMaxTime)).BeginInit();
             this.SuspendLayout();
             // 
             // lProxiesFileName
@@ -106,6 +110,7 @@
             this.lQueryInterval.Size = new System.Drawing.Size(142, 13);
             this.lQueryInterval.TabIndex = 8;
             this.lQueryInterval.Text = "Интервал запросов (в мс):";
+            this.toolTip.SetToolTip(this.lQueryInterval, "Минимальный интервал между двумя запросами\r\n(в миллисекундах, 1с = 1000 мс).");
             // 
             // udQueryInterval
             // 
@@ -118,6 +123,7 @@
             this.udQueryInterval.Name = "udQueryInterval";
             this.udQueryInterval.Size = new System.Drawing.Size(120, 20);
             this.udQueryInterval.TabIndex = 9;
+            this.toolTip.SetToolTip(this.udQueryInterval, "Минимальный интервал между двумя запросами\r\n(в миллисекундах, 1с = 1000 мс).");
             this.udQueryInterval.Value = new decimal(new int[] {
             3000,
             0,
@@ -126,7 +132,7 @@
             // 
             // bStart
             // 
-            this.bStart.Location = new System.Drawing.Point(12, 202);
+            this.bStart.Location = new System.Drawing.Point(12, 243);
             this.bStart.Name = "bStart";
             this.bStart.Size = new System.Drawing.Size(157, 23);
             this.bStart.TabIndex = 10;
@@ -137,7 +143,7 @@
             // lQueryUrl
             // 
             this.lQueryUrl.AutoSize = true;
-            this.lQueryUrl.Location = new System.Drawing.Point(9, 166);
+            this.lQueryUrl.Location = new System.Drawing.Point(9, 207);
             this.lQueryUrl.Name = "lQueryUrl";
             this.lQueryUrl.Size = new System.Drawing.Size(113, 13);
             this.lQueryUrl.TabIndex = 11;
@@ -145,7 +151,7 @@
             // 
             // tbQueryUrl
             // 
-            this.tbQueryUrl.Location = new System.Drawing.Point(178, 163);
+            this.tbQueryUrl.Location = new System.Drawing.Point(178, 204);
             this.tbQueryUrl.Name = "tbQueryUrl";
             this.tbQueryUrl.Size = new System.Drawing.Size(391, 20);
             this.tbQueryUrl.TabIndex = 12;
@@ -154,7 +160,7 @@
             // lQueriesCountLabel
             // 
             this.lQueriesCountLabel.AutoSize = true;
-            this.lQueriesCountLabel.Location = new System.Drawing.Point(175, 202);
+            this.lQueriesCountLabel.Location = new System.Drawing.Point(175, 243);
             this.lQueriesCountLabel.Name = "lQueriesCountLabel";
             this.lQueriesCountLabel.Size = new System.Drawing.Size(150, 13);
             this.lQueriesCountLabel.TabIndex = 13;
@@ -164,7 +170,7 @@
             // lQueriesCount
             // 
             this.lQueriesCount.AutoSize = true;
-            this.lQueriesCount.Location = new System.Drawing.Point(343, 202);
+            this.lQueriesCount.Location = new System.Drawing.Point(343, 243);
             this.lQueriesCount.Name = "lQueriesCount";
             this.lQueriesCount.Size = new System.Drawing.Size(0, 13);
             this.lQueriesCount.TabIndex = 14;
@@ -174,7 +180,7 @@
             // 
             this.lCurrentQuery.AccessibleRole = System.Windows.Forms.AccessibleRole.Clock;
             this.lCurrentQuery.AutoSize = true;
-            this.lCurrentQuery.Location = new System.Drawing.Point(343, 230);
+            this.lCurrentQuery.Location = new System.Drawing.Point(343, 271);
             this.lCurrentQuery.Name = "lCurrentQuery";
             this.lCurrentQuery.Size = new System.Drawing.Size(0, 13);
             this.lCurrentQuery.TabIndex = 16;
@@ -184,7 +190,7 @@
             // 
             this.lCurrentQueryLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.Clock;
             this.lCurrentQueryLabel.AutoSize = true;
-            this.lCurrentQueryLabel.Location = new System.Drawing.Point(175, 230);
+            this.lCurrentQueryLabel.Location = new System.Drawing.Point(175, 271);
             this.lCurrentQueryLabel.Name = "lCurrentQueryLabel";
             this.lCurrentQueryLabel.Size = new System.Drawing.Size(144, 13);
             this.lCurrentQueryLabel.TabIndex = 15;
@@ -202,8 +208,10 @@
             this.udProxyTimeout.Name = "udProxyTimeout";
             this.udProxyTimeout.Size = new System.Drawing.Size(120, 20);
             this.udProxyTimeout.TabIndex = 18;
+            this.toolTip.SetToolTip(this.udProxyTimeout, "Время, в течение которого программа\r\nпытается соединиться с прокси-сервером\r\n(в м" +
+        "иллисекундах, 1с = 1000 мс).");
             this.udProxyTimeout.Value = new decimal(new int[] {
-            300,
+            15000,
             0,
             0,
             0});
@@ -216,12 +224,46 @@
             this.lProxyInterval.Size = new System.Drawing.Size(124, 13);
             this.lProxyInterval.TabIndex = 17;
             this.lProxyInterval.Text = "Таймаут прокси (в мс):";
+            this.toolTip.SetToolTip(this.lProxyInterval, "Время, в течение которого программа\r\nпытается соединиться с прокси-сервером\r\n(в м" +
+        "иллисекундах, 1с = 1000 мс).");
+            // 
+            // udMaxTime
+            // 
+            this.udMaxTime.Location = new System.Drawing.Point(178, 159);
+            this.udMaxTime.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.udMaxTime.Name = "udMaxTime";
+            this.udMaxTime.Size = new System.Drawing.Size(120, 20);
+            this.udMaxTime.TabIndex = 20;
+            this.toolTip.SetToolTip(this.udMaxTime, "Максимальное время, отведённое на выполнение запроса.\r\nПосле этого времени програ" +
+        "мма перейдёт к следующему\r\nпрокси-серверу.\r\n(в миллисекундах, 1с = 1000 мс).");
+            this.udMaxTime.Value = new decimal(new int[] {
+            60000,
+            0,
+            0,
+            0});
+            // 
+            // lMaxTime
+            // 
+            this.lMaxTime.AutoSize = true;
+            this.lMaxTime.Location = new System.Drawing.Point(9, 161);
+            this.lMaxTime.Name = "lMaxTime";
+            this.lMaxTime.Size = new System.Drawing.Size(119, 26);
+            this.lMaxTime.TabIndex = 19;
+            this.lMaxTime.Text = "Максимальное время\r\nзапроса (в мс):";
+            this.toolTip.SetToolTip(this.lMaxTime, "Максимальное время, отведённое на выполнение запроса.\r\nПосле этого времени програ" +
+        "мма перейдёт к следующему\r\nпрокси-серверу.\r\n(в миллисекундах, 1с = 1000 мс).\r\n");
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 263);
+            this.ClientSize = new System.Drawing.Size(581, 299);
+            this.Controls.Add(this.udMaxTime);
+            this.Controls.Add(this.lMaxTime);
             this.Controls.Add(this.udProxyTimeout);
             this.Controls.Add(this.lProxyInterval);
             this.Controls.Add(this.lCurrentQuery);
@@ -242,6 +284,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.udQueryInterval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.udProxyTimeout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.udMaxTime)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,6 +309,9 @@
         private System.Windows.Forms.Label lCurrentQueryLabel;
         private System.Windows.Forms.NumericUpDown udProxyTimeout;
         private System.Windows.Forms.Label lProxyInterval;
+        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.NumericUpDown udMaxTime;
+        private System.Windows.Forms.Label lMaxTime;
     }
 }
 
