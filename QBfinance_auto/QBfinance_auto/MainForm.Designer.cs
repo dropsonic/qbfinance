@@ -227,6 +227,10 @@
             this.toolTip.SetToolTip(this.lProxyInterval, "Время, в течение которого программа\r\nпытается соединиться с прокси-сервером\r\n(в м" +
         "иллисекундах, 1с = 1000 мс).");
             // 
+            // toolTip
+            // 
+            this.toolTip.IsBalloon = true;
+            // 
             // udMaxTime
             // 
             this.udMaxTime.Location = new System.Drawing.Point(178, 159);

@@ -100,12 +100,39 @@ namespace QBfinance_auto
                     ProxyService.SetProxy(_proxies[i]);
                     currentProxy = _proxies[i];
 
-                    DoQuery(driver, query);
-                    
+                    //using (Timer timer = new Timer(
+                    //    (state) => 
+                    //    {
+                    //        ((ManualResetEventSlim)state).Set();
+                    //    }, mre, _maxTime, Timeout.Infinite))
+                    //{
+                    //    DoQuery(driver, query);
+                    //    mre.Set();
+                    //}
+
+                    //Запускаем сам запрос в браузере в новом потоке
+                    ManualResetEventSlim mre = new ManualResetEventSlim(false);
+                    Thread thread = new Thread(p =>
+                    {
+                        try
+                        {
+                            DoQuery(driver, query);
+                            mre.Set();
+                        }
+                        catch (Exception tEx)
+                        {
+                            _logger.WriteLine(String.Format("{0} - {1}: {2} ({3})", DateTime.Now.ToString(), currentProxy, tEx.GetType().Name, tEx.Message));
+                        }
+                    });
+                    thread.Start(mre);
+                    //Ждём и проверяем, успел ли выполниться запрос
+                    if (mre.Wait(_maxTime) == false)
+                        throw new WebException("Время запроса истекло.", WebExceptionStatus.Timeout);
+
                     if (!CheckTitle(driver.Title, query))
-                        throw new WebException("Probably captcha (reason: title).");
+                        throw new WebException("Возможно, captcha (причина: title).");
                     if (!CheckUrl(driver.Url))
-                        throw new WebException("Probably captcha (reason: URL).");
+                        throw new WebException("Возможно, captcha (причина: URL).");
 
                     driver.Manage().Cookies.DeleteAllCookies();
 
