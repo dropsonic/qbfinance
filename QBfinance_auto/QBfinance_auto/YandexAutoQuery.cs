@@ -15,12 +15,13 @@ namespace QBfinance_auto
 
         protected override void DoQuery(IWebDriver driver, string query)
         {
-            string query_utf8 = Encoding.UTF8.GetString(Encoding.ASCII.GetBytes(query));
+            //string query_utf8 = Encoding.UTF8.GetString(Encoding.ASCII.GetBytes(query));
+            //string query_unicode = Encoding.Unicode.GetString(Encoding.ASCII.GetBytes(query));
             driver.Navigate().GoToUrl(BaseUrl);
             IWebElement text = driver.FindElement(By.Id("text"));
             text.Click();
             text.Clear();
-            text.SendKeys(query_utf8);
+            text.SendKeys(query);
             IWebElement button = driver.FindElement(By.CssSelector("input.b-form-button__input"));
             button.Click();
         }

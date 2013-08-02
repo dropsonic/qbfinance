@@ -38,7 +38,7 @@ namespace QBfinance_auto
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                _queries = File.ReadAllLines(openFileDialog.FileName);
+                _queries = File.ReadAllLines(openFileDialog.FileName, Encoding.GetEncoding(1251));
                 lQueriesFileName.Text = openFileDialog.FileName;
                 lQueriesFileName.Visible = true;
             }
