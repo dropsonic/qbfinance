@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.20623.1 VSUPREVIEW
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QBfinance_auto", "QBfinance_auto\QBfinance_auto.csproj", "{A7980FE9-FDD5-48D8-9864-87858A9B00E6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E9E359F4-FAB0-4BB4-B759-2D3EB61ED900}"
@@ -10,15 +12,30 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E9E359
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleBase", "ModuleBase\ModuleBase.csproj", "{77DCB940-D6F1-4E70-AB7A-65357ECF1CE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexModule", "YandexModule\YandexModule.csproj", "{452035C6-2A49-4687-9372-14DB45816474}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleModule", "GoogleModule\GoogleModule.csproj", "{0D65DE54-4D21-4D23-9C2B-1FDD10CEC7C9}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://dropsonic.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = QBfinance_auto\\QBfinance_auto.csproj
-		SccProjectName1 = QBfinance_auto
-		SccLocalPath1 = QBfinance_auto
+		SccProjectUniqueName1 = GoogleModule\\GoogleModule.csproj
+		SccProjectName1 = GoogleModule
+		SccLocalPath1 = GoogleModule
+		SccProjectUniqueName2 = ModuleBase\\ModuleBase.csproj
+		SccProjectName2 = ModuleBase
+		SccLocalPath2 = ModuleBase
+		SccProjectUniqueName3 = QBfinance_auto\\QBfinance_auto.csproj
+		SccProjectName3 = QBfinance_auto
+		SccLocalPath3 = QBfinance_auto
+		SccProjectUniqueName4 = YandexModule\\YandexModule.csproj
+		SccProjectName4 = YandexModule
+		SccLocalPath4 = YandexModule
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +46,18 @@ Global
 		{A7980FE9-FDD5-48D8-9864-87858A9B00E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7980FE9-FDD5-48D8-9864-87858A9B00E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7980FE9-FDD5-48D8-9864-87858A9B00E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77DCB940-D6F1-4E70-AB7A-65357ECF1CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77DCB940-D6F1-4E70-AB7A-65357ECF1CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77DCB940-D6F1-4E70-AB7A-65357ECF1CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77DCB940-D6F1-4E70-AB7A-65357ECF1CE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{452035C6-2A49-4687-9372-14DB45816474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{452035C6-2A49-4687-9372-14DB45816474}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{452035C6-2A49-4687-9372-14DB45816474}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{452035C6-2A49-4687-9372-14DB45816474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D65DE54-4D21-4D23-9C2B-1FDD10CEC7C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D65DE54-4D21-4D23-9C2B-1FDD10CEC7C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D65DE54-4D21-4D23-9C2B-1FDD10CEC7C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D65DE54-4D21-4D23-9C2B-1FDD10CEC7C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

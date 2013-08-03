@@ -1,10 +1,12 @@
-﻿using System;
+﻿using QBfinance_auto.Modules;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,6 +24,15 @@ namespace QBfinance_auto
         public MainForm()
         {
             InitializeComponent();
+            try
+            {
+                var modules = LoadModules(Application.StartupPath).ToArray();
+                cbModule.Items.AddRange(modules);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка загрузки модулей:\n" + ex.Message, String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void bLoadFile_Click(object sender, EventArgs e)
@@ -57,7 +68,13 @@ namespace QBfinance_auto
                 return;
             }
 
-            _autoQuery = new YandexAutoQuery(tbQueryUrl.Text, _proxies, _queries,
+            if (cbModule.SelectedItem == null)
+            {
+                MessageBox.Show("Для начала работы необходимо выбрать используемый модуль");
+                return;
+            }
+
+            _autoQuery = new AutoQuery((ModuleBase)cbModule.SelectedItem, _proxies, _queries,
                                        (int)udQueryInterval.Value, (int)udProxyTimeout.Value, (int)udMaxTime.Value,
                                        new Logger("log.txt"));
             _autoQuery.ProgressChanged += _autoQuery_ProgressChanged;
@@ -87,6 +104,23 @@ namespace QBfinance_auto
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             ProxyService.DisableProxy();
+        }
+
+        private IEnumerable<ModuleBase> LoadModules(string path)
+        {
+            if (!Directory.Exists(path))
+                throw new DirectoryNotFoundException();
+
+            var files = Directory.EnumerateFiles(path, "*.dll", SearchOption.AllDirectories);
+            foreach (var file in files)
+            {
+                var types = Assembly.LoadFrom(file).GetExportedTypes();
+                foreach (var type in types)
+                {
+                    if (type.IsClass && type.BaseType == typeof(ModuleBase))
+                        yield return (ModuleBase)Activator.CreateInstance(type);
+                }
+            }
         }
     }
 }

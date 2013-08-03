@@ -9,6 +9,7 @@ using System.Web;
 using System.Net;
 using System.Threading;
 using System.IO;
+using QBfinance_auto.Modules;
 
 namespace QBfinance_auto
 {
@@ -33,13 +34,14 @@ namespace QBfinance_auto
              * Один запрос идёт подряд с максимальной скоростью с разных IP-адресов.
              * Когда интервал истекает, то адрес прокси меняется на самый первый в списке,
              * и программа переключается на следующий запрос. */
-    public abstract class AutoQuery
+    public class AutoQuery
     {
+        ModuleBase _module;
+
         string[] _proxies;
         string[] _queries;
         int _currentQuery;
 
-        protected string BaseUrl { get; set; }
         int _queryInterval;
         int _proxyTimeout;
         int _maxTime;
@@ -52,10 +54,10 @@ namespace QBfinance_auto
         //int _ipCount = 0;
         int _queryCount = 0;
 
-        public AutoQuery(string baseUrl, string[] proxies, string[] queries,
+        public AutoQuery(ModuleBase module, string[] proxies, string[] queries,
             int queryInterval, int proxyTimeout, int maxTime, ILogger logger)
         {
-            BaseUrl = baseUrl;
+            _module = module;
             _proxies = proxies;
             _queries = queries;
             _queryInterval = queryInterval;
@@ -116,7 +118,7 @@ namespace QBfinance_auto
                     {
                         try
                         {
-                            DoQuery(driver, query);
+                            _module.DoQuery(driver, query);
                             mre.Set();
                         }
                         catch (Exception tEx)
@@ -129,9 +131,9 @@ namespace QBfinance_auto
                     if (mre.Wait(_maxTime) == false)
                         throw new WebException("Время запроса истекло.", WebExceptionStatus.Timeout);
 
-                    if (!CheckTitle(driver.Title, query))
+                    if (!_module.CheckTitle(driver.Title, query))
                         throw new WebException("Возможно, captcha (причина: title).");
-                    if (!CheckUrl(driver.Url))
+                    if (!_module.CheckUrl(driver.Url))
                         throw new WebException("Возможно, captcha (причина: URL).");
 
                     driver.Manage().Cookies.DeleteAllCookies();
@@ -151,15 +153,6 @@ namespace QBfinance_auto
             if (delta < _queryInterval)
                 Thread.Sleep(_queryInterval - (int)Math.Round(delta));
         }
-
-        /// <summary>
-        /// Метод, определяющий логику действий на странице (ввод поискового запроса, нажатие кнопок и т.д.).
-        /// </summary>
-        protected abstract void DoQuery(IWebDriver driver, string query);
-
-        protected abstract bool CheckTitle(string title, string query);
-
-        protected abstract bool CheckUrl(string url);
 
         //public event EventHandler<AutoQueryProgressChangedEventArgs> ProgressChanged;
         public event AutoQueryProgressChangedDelegate ProgressChanged;

@@ -38,8 +38,7 @@
             this.lQueryInterval = new System.Windows.Forms.Label();
             this.udQueryInterval = new System.Windows.Forms.NumericUpDown();
             this.bStart = new System.Windows.Forms.Button();
-            this.lQueryUrl = new System.Windows.Forms.Label();
-            this.tbQueryUrl = new System.Windows.Forms.TextBox();
+            this.lModule = new System.Windows.Forms.Label();
             this.lQueriesCountLabel = new System.Windows.Forms.Label();
             this.lQueriesCount = new System.Windows.Forms.Label();
             this.lCurrentQuery = new System.Windows.Forms.Label();
@@ -49,6 +48,7 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.udMaxTime = new System.Windows.Forms.NumericUpDown();
             this.lMaxTime = new System.Windows.Forms.Label();
+            this.cbModule = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.udQueryInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udProxyTimeout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udMaxTime)).BeginInit();
@@ -140,22 +140,14 @@
             this.bStart.UseVisualStyleBackColor = true;
             this.bStart.Click += new System.EventHandler(this.bStart_Click);
             // 
-            // lQueryUrl
+            // lModule
             // 
-            this.lQueryUrl.AutoSize = true;
-            this.lQueryUrl.Location = new System.Drawing.Point(9, 207);
-            this.lQueryUrl.Name = "lQueryUrl";
-            this.lQueryUrl.Size = new System.Drawing.Size(113, 13);
-            this.lQueryUrl.TabIndex = 11;
-            this.lQueryUrl.Text = "Адрес для запросов:";
-            // 
-            // tbQueryUrl
-            // 
-            this.tbQueryUrl.Location = new System.Drawing.Point(178, 204);
-            this.tbQueryUrl.Name = "tbQueryUrl";
-            this.tbQueryUrl.Size = new System.Drawing.Size(391, 20);
-            this.tbQueryUrl.TabIndex = 12;
-            this.tbQueryUrl.Text = "http://yandex.ru";
+            this.lModule.AutoSize = true;
+            this.lModule.Location = new System.Drawing.Point(9, 207);
+            this.lModule.Name = "lModule";
+            this.lModule.Size = new System.Drawing.Size(127, 13);
+            this.lModule.TabIndex = 11;
+            this.lModule.Text = "Используемый модуль:";
             // 
             // lQueriesCountLabel
             // 
@@ -261,11 +253,21 @@
             this.toolTip.SetToolTip(this.lMaxTime, "Максимальное время, отведённое на выполнение запроса.\r\nПосле этого времени програ" +
         "мма перейдёт к следующему\r\nпрокси-серверу.\r\n(в миллисекундах, 1с = 1000 мс).\r\n");
             // 
+            // cbModule
+            // 
+            this.cbModule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbModule.FormattingEnabled = true;
+            this.cbModule.Location = new System.Drawing.Point(178, 198);
+            this.cbModule.Name = "cbModule";
+            this.cbModule.Size = new System.Drawing.Size(222, 21);
+            this.cbModule.TabIndex = 21;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(581, 299);
+            this.Controls.Add(this.cbModule);
             this.Controls.Add(this.udMaxTime);
             this.Controls.Add(this.lMaxTime);
             this.Controls.Add(this.udProxyTimeout);
@@ -274,8 +276,7 @@
             this.Controls.Add(this.lCurrentQueryLabel);
             this.Controls.Add(this.lQueriesCount);
             this.Controls.Add(this.lQueriesCountLabel);
-            this.Controls.Add(this.tbQueryUrl);
-            this.Controls.Add(this.lQueryUrl);
+            this.Controls.Add(this.lModule);
             this.Controls.Add(this.bStart);
             this.Controls.Add(this.udQueryInterval);
             this.Controls.Add(this.lQueryInterval);
@@ -305,8 +306,7 @@
         private System.Windows.Forms.Label lQueryInterval;
         private System.Windows.Forms.NumericUpDown udQueryInterval;
         private System.Windows.Forms.Button bStart;
-        private System.Windows.Forms.Label lQueryUrl;
-        private System.Windows.Forms.TextBox tbQueryUrl;
+        private System.Windows.Forms.Label lModule;
         private System.Windows.Forms.Label lQueriesCountLabel;
         private System.Windows.Forms.Label lQueriesCount;
         private System.Windows.Forms.Label lCurrentQuery;
@@ -316,6 +316,7 @@
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.NumericUpDown udMaxTime;
         private System.Windows.Forms.Label lMaxTime;
+        private System.Windows.Forms.ComboBox cbModule;
     }
 }
 
