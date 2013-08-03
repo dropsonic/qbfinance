@@ -21,6 +21,8 @@ namespace QBfinance_auto
         string[] _proxies;
         string[] _queries;
 
+        bool _started = false;
+
         public MainForm()
         {
             InitializeComponent();
@@ -62,27 +64,56 @@ namespace QBfinance_auto
 
         private void bStart_Click(object sender, EventArgs e)
         {
-            if (_proxies == null || _queries == null)
+            if (_started)
             {
-                MessageBox.Show("Для начала работы необходимо загрузить списки прокси и запросов.");
-                return;
+                if (_autoQuery != null)
+                    _autoQuery.Cancel();
+                _started = false;
+                ChangeVisualState();
             }
-
-            if (cbModule.SelectedItem == null)
+            else
             {
-                MessageBox.Show("Для начала работы необходимо выбрать используемый модуль");
-                return;
-            }
+                if (_proxies == null || _queries == null)
+                {
+                    MessageBox.Show("Для начала работы необходимо загрузить списки прокси и запросов.");
+                    return;
+                }
 
-            _autoQuery = new AutoQuery((ModuleBase)cbModule.SelectedItem, _proxies, _queries,
-                                       (int)udQueryInterval.Value, (int)udProxyTimeout.Value, (int)udMaxTime.Value,
-                                       new Logger("log.txt"));
-            _autoQuery.ProgressChanged += _autoQuery_ProgressChanged;
-            lQueriesCount.Visible = true;
-            lQueriesCountLabel.Visible = true;
-            lCurrentQuery.Visible = true;
-            lCurrentQueryLabel.Visible = true;
-            ThreadPool.QueueUserWorkItem(o => _autoQuery.Start());
+                if (cbModule.SelectedItem == null)
+                {
+                    MessageBox.Show("Для начала работы необходимо выбрать используемый модуль");
+                    return;
+                }
+
+                string logFileName = "log (" + DateTime.Now.ToString("dd.MM.yyyy HH-mm-ss", System.Globalization.CultureInfo.InvariantCulture) + ").txt";
+                lLog.Text = Directory.GetCurrentDirectory() + "\\" + logFileName;
+                _autoQuery = new AutoQuery((ModuleBase)cbModule.SelectedItem, _proxies, _queries,
+                                           (int)udQueryInterval.Value, (int)udProxyTimeout.Value, (int)udMaxTime.Value,
+                                           new Logger(logFileName));
+                _autoQuery.ProgressChanged += _autoQuery_ProgressChanged;
+
+                _started = true;
+                ChangeVisualState();
+
+                ThreadPool.QueueUserWorkItem(o => _autoQuery.Start());
+            }
+        }
+
+        void ChangeVisualState()
+        {
+            bStart.Text = _started ? "Остановить" : "Начать загрузку";
+            lQueriesCount.Visible = _started;
+            lQueriesCountLabel.Visible = _started;
+            lCurrentQuery.Visible = _started;
+            lCurrentQueryLabel.Visible = _started;
+            bLoadProxies.Enabled = !_started;
+            bLoadQueries.Enabled = !_started;
+            udQueryInterval.Enabled = !_started;
+            udProxyTimeout.Enabled = !_started;
+            udMaxTime.Enabled = !_started;
+            cbModule.Enabled = !_started;
+            lLogLabel.Visible = _started;
+            lLog.Visible = _started;
         }
 
         void _autoQuery_ProgressChanged(object sender, AutoQueryProgressChangedEventArgs e)
@@ -95,6 +126,7 @@ namespace QBfinance_auto
             if (e.Done)
             {
                 MessageBox.Show("Задача выполнена!");
+                ChangeVisualState();
             }
 
             lQueriesCount.Text = e.Queries.ToString();

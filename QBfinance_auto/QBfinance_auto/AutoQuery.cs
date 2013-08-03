@@ -54,6 +54,8 @@ namespace QBfinance_auto
         //int _ipCount = 0;
         int _queryCount = 0;
 
+        CancellationTokenSource _cancelToken;
+
         public AutoQuery(ModuleBase module, string[] proxies, string[] queries,
             int queryInterval, int proxyTimeout, int maxTime, ILogger logger)
         {
@@ -69,6 +71,7 @@ namespace QBfinance_auto
         public void Start()
         {
             _currentQuery = 0;
+            _cancelToken = new CancellationTokenSource();
 
             IWebDriver driver = new FirefoxDriver();
             driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromMilliseconds(_proxyTimeout));
@@ -76,6 +79,12 @@ namespace QBfinance_auto
             
             for (int i = 0; i < _queries.Length; i++)
             {
+                if (_cancelToken.IsCancellationRequested)
+                {
+                    Stop();
+                    return;
+                }
+
                 ExecuteQuery(driver);
                 if (_currentQuery < _queries.Length-1)
                     _currentQuery++;
@@ -85,9 +94,15 @@ namespace QBfinance_auto
             Stop();
         }
 
-        public void Stop()
+        private void Stop()
         {
             ProxyService.DisableProxy();
+            _logger.Close();
+        }
+
+        public void Cancel()
+        {
+            _cancelToken.Cancel();
         }
 
         private void ExecuteQuery(IWebDriver driver)
@@ -100,6 +115,12 @@ namespace QBfinance_auto
                 string query = _queries[_currentQuery];
                 try
                 {
+                    if (_cancelToken.IsCancellationRequested)
+                    {
+                        ProxyService.DisableProxy();
+                        return;
+                    }
+
                     ProxyService.SetProxy(_proxies[i]);
                     currentProxy = _proxies[i];
 

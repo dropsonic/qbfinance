@@ -49,6 +49,8 @@
             this.udMaxTime = new System.Windows.Forms.NumericUpDown();
             this.lMaxTime = new System.Windows.Forms.Label();
             this.cbModule = new System.Windows.Forms.ComboBox();
+            this.lLogLabel = new System.Windows.Forms.Label();
+            this.lLog = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.udQueryInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udProxyTimeout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udMaxTime)).BeginInit();
@@ -262,11 +264,34 @@
             this.cbModule.Size = new System.Drawing.Size(222, 21);
             this.cbModule.TabIndex = 21;
             // 
+            // lLogLabel
+            // 
+            this.lLogLabel.AutoSize = true;
+            this.lLogLabel.Location = new System.Drawing.Point(9, 300);
+            this.lLogLabel.Name = "lLogLabel";
+            this.lLogLabel.Size = new System.Drawing.Size(116, 13);
+            this.lLogLabel.TabIndex = 22;
+            this.lLogLabel.Text = "Имя файла с логами:";
+            this.lLogLabel.Visible = false;
+            // 
+            // lLog
+            // 
+            this.lLog.AutoSize = true;
+            this.lLog.Location = new System.Drawing.Point(175, 300);
+            this.lLog.MaximumSize = new System.Drawing.Size(400, 0);
+            this.lLog.Name = "lLog";
+            this.lLog.Size = new System.Drawing.Size(113, 13);
+            this.lLog.TabIndex = 23;
+            this.lLog.Text = "Имя файла с логами";
+            this.lLog.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 299);
+            this.ClientSize = new System.Drawing.Size(581, 332);
+            this.Controls.Add(this.lLog);
+            this.Controls.Add(this.lLogLabel);
             this.Controls.Add(this.cbModule);
             this.Controls.Add(this.udMaxTime);
             this.Controls.Add(this.lMaxTime);
@@ -317,6 +342,8 @@
         private System.Windows.Forms.NumericUpDown udMaxTime;
         private System.Windows.Forms.Label lMaxTime;
         private System.Windows.Forms.ComboBox cbModule;
+        private System.Windows.Forms.Label lLogLabel;
+        private System.Windows.Forms.Label lLog;
     }
 }
 
