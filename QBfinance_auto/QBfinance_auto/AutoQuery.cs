@@ -71,6 +71,7 @@ namespace QBfinance_auto
             _currentQuery = 0;
 
             IWebDriver driver = new FirefoxDriver();
+            driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromMilliseconds(_proxyTimeout));
             driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromMilliseconds(_proxyTimeout));
             
             for (int i = 0; i < _queries.Length; i++)

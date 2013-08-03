@@ -37,12 +37,12 @@ namespace QBfinance_auto.Modules
 
         public override bool CheckTitle(string title, string query)
         {
-            throw new NotImplementedException();
+            return title.Contains(query);
         }
 
         public override bool CheckUrl(string url)
         {
-            throw new NotImplementedException();
+            return url.Contains("search") && !url.Contains("sorry");
         }
     }
 }

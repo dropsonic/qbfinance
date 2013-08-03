@@ -200,10 +200,10 @@
             this.udProxyTimeout.Name = "udProxyTimeout";
             this.udProxyTimeout.Size = new System.Drawing.Size(120, 20);
             this.udProxyTimeout.TabIndex = 18;
-            this.toolTip.SetToolTip(this.udProxyTimeout, "Время, в течение которого программа\r\nпытается соединиться с прокси-сервером\r\n(в м" +
-        "иллисекундах, 1с = 1000 мс).");
+            this.toolTip.SetToolTip(this.udProxyTimeout, "Время, в течение которого программа\r\nпытается соединиться с прокси-сервером\r\nи за" +
+        "грузить страницу\r\n(в миллисекундах, 1с = 1000 мс).");
             this.udProxyTimeout.Value = new decimal(new int[] {
-            15000,
+            45000,
             0,
             0,
             0});
@@ -213,11 +213,11 @@
             this.lProxyInterval.AutoSize = true;
             this.lProxyInterval.Location = new System.Drawing.Point(9, 124);
             this.lProxyInterval.Name = "lProxyInterval";
-            this.lProxyInterval.Size = new System.Drawing.Size(124, 13);
+            this.lProxyInterval.Size = new System.Drawing.Size(99, 26);
             this.lProxyInterval.TabIndex = 17;
-            this.lProxyInterval.Text = "Таймаут прокси (в мс):";
-            this.toolTip.SetToolTip(this.lProxyInterval, "Время, в течение которого программа\r\nпытается соединиться с прокси-сервером\r\n(в м" +
-        "иллисекундах, 1с = 1000 мс).");
+            this.lProxyInterval.Text = "Таймаут загрузки\r\nстраницы (в мс):";
+            this.toolTip.SetToolTip(this.lProxyInterval, "Время, в течение которого программа\r\nпытается соединиться с прокси-сервером\r\nи за" +
+        "грузить страницу\r\n(в миллисекундах, 1с = 1000 мс).");
             // 
             // toolTip
             // 
