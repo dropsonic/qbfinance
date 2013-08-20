@@ -31,7 +31,16 @@ namespace QBfinance_auto.Modules
             text.Click();
             text.Clear();
             text.SendKeys(query);
-            IWebElement button = driver.FindElement(By.Id("gbqfb"));
+
+            IWebElement button;
+            try
+            {
+                button = driver.FindElement(By.Id("gbqfba"));
+            }
+            catch (NoSuchElementException)
+            {
+                button = driver.FindElement(By.Id("gbqfb"));
+            }
             button.Click();
         }
 
