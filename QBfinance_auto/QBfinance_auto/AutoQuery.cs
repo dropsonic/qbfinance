@@ -36,15 +36,30 @@ namespace QBfinance_auto
              * и программа переключается на следующий запрос. */
     public class AutoQuery
     {
+        public struct Options
+        {
+            public int QueryInterval { get; set; }
+            public int ProxyTimeout { get; set; }
+            public int MaxTime { get; set; }
+            public bool JSEnabled { get; set; }
+
+            public Options(int queryInterval, int proxyTimeout, int maxTime, bool jsEnabled)
+                : this()
+            {
+                QueryInterval = queryInterval;
+                ProxyTimeout = proxyTimeout;
+                MaxTime = maxTime;
+                JSEnabled = jsEnabled;
+            }
+        }
+
         ModuleBase _module;
 
         string[] _proxies;
         string[] _queries;
         int _currentQuery;
 
-        int _queryInterval;
-        int _proxyTimeout;
-        int _maxTime;
+        Options _options;
 
         ILogger _logger;
 
@@ -57,14 +72,12 @@ namespace QBfinance_auto
         CancellationTokenSource _cancelToken;
 
         public AutoQuery(ModuleBase module, string[] proxies, string[] queries,
-            int queryInterval, int proxyTimeout, int maxTime, ILogger logger)
+            Options options, ILogger logger)
         {
             _module = module;
             _proxies = proxies;
             _queries = queries;
-            _queryInterval = queryInterval;
-            _proxyTimeout = proxyTimeout;
-            _maxTime = maxTime;
+            _options = options;
             _logger = logger;
         }
 
@@ -74,11 +87,11 @@ namespace QBfinance_auto
             _cancelToken = new CancellationTokenSource();
 
             FirefoxProfile profile = new FirefoxProfile();
-            profile.SetPreference("javascript.enabled", false);
+            profile.SetPreference("javascript.enabled", _options.JSEnabled);
             
             IWebDriver driver = new FirefoxDriver(profile);
-            driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromMilliseconds(_proxyTimeout));
-            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromMilliseconds(_proxyTimeout));
+            driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromMilliseconds(_options.ProxyTimeout));
+            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromMilliseconds(_options.ProxyTimeout));
             
             for (int i = 0; i < _queries.Length; i++)
             {
@@ -153,7 +166,7 @@ namespace QBfinance_auto
                     });
                     thread.Start(mre);
                     //Ждём и проверяем, успел ли выполниться запрос
-                    if (mre.Wait(_maxTime) == false)
+                    if (mre.Wait(_options.MaxTime) == false)
                         throw new WebException("Время запроса истекло.", WebExceptionStatus.Timeout);
 
                     if (!_module.CheckTitle(driver.Title, query))
@@ -175,8 +188,8 @@ namespace QBfinance_auto
             }
 
             double delta = (DateTime.Now - beginTime).TotalMilliseconds;
-            if (delta < _queryInterval)
-                Thread.Sleep(_queryInterval - (int)Math.Round(delta));
+            if (delta < _options.QueryInterval)
+                Thread.Sleep(_options.QueryInterval - (int)Math.Round(delta));
         }
 
         //public event EventHandler<AutoQueryProgressChangedEventArgs> ProgressChanged;

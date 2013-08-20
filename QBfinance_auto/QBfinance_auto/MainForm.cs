@@ -88,8 +88,9 @@ namespace QBfinance_auto
 
                 string logFileName = "log (" + DateTime.Now.ToString("dd.MM.yyyy HH-mm-ss", System.Globalization.CultureInfo.InvariantCulture) + ").txt";
                 lLog.Text = Directory.GetCurrentDirectory() + "\\" + logFileName;
+                var options = new AutoQuery.Options((int)udQueryInterval.Value, (int)udProxyTimeout.Value, (int)udMaxTime.Value, cbJSEnabled.Checked);
                 _autoQuery = new AutoQuery((ModuleBase)cbModule.SelectedItem, _proxies, _queries,
-                                           (int)udQueryInterval.Value, (int)udProxyTimeout.Value, (int)udMaxTime.Value,
+                                           options,
                                            new Logger(logFileName));
                 _autoQuery.ProgressChanged += _autoQuery_ProgressChanged;
 

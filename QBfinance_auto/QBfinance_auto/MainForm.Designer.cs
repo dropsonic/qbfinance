@@ -51,6 +51,7 @@
             this.cbModule = new System.Windows.Forms.ComboBox();
             this.lLogLabel = new System.Windows.Forms.Label();
             this.lLog = new System.Windows.Forms.LinkLabel();
+            this.cbJSEnabled = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.udQueryInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udProxyTimeout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udMaxTime)).BeginInit();
@@ -134,7 +135,7 @@
             // 
             // bStart
             // 
-            this.bStart.Location = new System.Drawing.Point(12, 243);
+            this.bStart.Location = new System.Drawing.Point(12, 266);
             this.bStart.Name = "bStart";
             this.bStart.Size = new System.Drawing.Size(157, 23);
             this.bStart.TabIndex = 10;
@@ -145,7 +146,7 @@
             // lModule
             // 
             this.lModule.AutoSize = true;
-            this.lModule.Location = new System.Drawing.Point(9, 207);
+            this.lModule.Location = new System.Drawing.Point(9, 230);
             this.lModule.Name = "lModule";
             this.lModule.Size = new System.Drawing.Size(127, 13);
             this.lModule.TabIndex = 11;
@@ -154,7 +155,7 @@
             // lQueriesCountLabel
             // 
             this.lQueriesCountLabel.AutoSize = true;
-            this.lQueriesCountLabel.Location = new System.Drawing.Point(175, 243);
+            this.lQueriesCountLabel.Location = new System.Drawing.Point(175, 266);
             this.lQueriesCountLabel.Name = "lQueriesCountLabel";
             this.lQueriesCountLabel.Size = new System.Drawing.Size(150, 13);
             this.lQueriesCountLabel.TabIndex = 13;
@@ -164,7 +165,7 @@
             // lQueriesCount
             // 
             this.lQueriesCount.AutoSize = true;
-            this.lQueriesCount.Location = new System.Drawing.Point(343, 243);
+            this.lQueriesCount.Location = new System.Drawing.Point(343, 266);
             this.lQueriesCount.Name = "lQueriesCount";
             this.lQueriesCount.Size = new System.Drawing.Size(0, 13);
             this.lQueriesCount.TabIndex = 14;
@@ -174,7 +175,7 @@
             // 
             this.lCurrentQuery.AccessibleRole = System.Windows.Forms.AccessibleRole.Clock;
             this.lCurrentQuery.AutoSize = true;
-            this.lCurrentQuery.Location = new System.Drawing.Point(343, 271);
+            this.lCurrentQuery.Location = new System.Drawing.Point(343, 294);
             this.lCurrentQuery.Name = "lCurrentQuery";
             this.lCurrentQuery.Size = new System.Drawing.Size(0, 13);
             this.lCurrentQuery.TabIndex = 16;
@@ -184,7 +185,7 @@
             // 
             this.lCurrentQueryLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.Clock;
             this.lCurrentQueryLabel.AutoSize = true;
-            this.lCurrentQueryLabel.Location = new System.Drawing.Point(175, 271);
+            this.lCurrentQueryLabel.Location = new System.Drawing.Point(175, 294);
             this.lCurrentQueryLabel.Name = "lCurrentQueryLabel";
             this.lCurrentQueryLabel.Size = new System.Drawing.Size(144, 13);
             this.lCurrentQueryLabel.TabIndex = 15;
@@ -259,7 +260,7 @@
             // 
             this.cbModule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbModule.FormattingEnabled = true;
-            this.cbModule.Location = new System.Drawing.Point(178, 204);
+            this.cbModule.Location = new System.Drawing.Point(178, 227);
             this.cbModule.Name = "cbModule";
             this.cbModule.Size = new System.Drawing.Size(222, 21);
             this.cbModule.TabIndex = 21;
@@ -267,7 +268,7 @@
             // lLogLabel
             // 
             this.lLogLabel.AutoSize = true;
-            this.lLogLabel.Location = new System.Drawing.Point(9, 300);
+            this.lLogLabel.Location = new System.Drawing.Point(9, 323);
             this.lLogLabel.Name = "lLogLabel";
             this.lLogLabel.Size = new System.Drawing.Size(116, 13);
             this.lLogLabel.TabIndex = 22;
@@ -277,7 +278,7 @@
             // lLog
             // 
             this.lLog.AutoSize = true;
-            this.lLog.Location = new System.Drawing.Point(175, 300);
+            this.lLog.Location = new System.Drawing.Point(175, 323);
             this.lLog.MaximumSize = new System.Drawing.Size(400, 0);
             this.lLog.Name = "lLog";
             this.lLog.Size = new System.Drawing.Size(113, 13);
@@ -287,11 +288,26 @@
             this.lLog.Visible = false;
             this.lLog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLog_LinkClicked);
             // 
+            // cbJSEnabled
+            // 
+            this.cbJSEnabled.AutoSize = true;
+            this.cbJSEnabled.Checked = true;
+            this.cbJSEnabled.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbJSEnabled.Location = new System.Drawing.Point(8, 200);
+            this.cbJSEnabled.Name = "cbJSEnabled";
+            this.cbJSEnabled.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cbJSEnabled.Size = new System.Drawing.Size(128, 17);
+            this.cbJSEnabled.TabIndex = 25;
+            this.cbJSEnabled.Text = "Включить JavaScript";
+            this.toolTip.SetToolTip(this.cbJSEnabled, "Рекомендуется выключить JavaScript,\r\nесли сайт обнаруживает прогу.");
+            this.cbJSEnabled.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 359);
+            this.ClientSize = new System.Drawing.Size(581, 445);
+            this.Controls.Add(this.cbJSEnabled);
             this.Controls.Add(this.lLog);
             this.Controls.Add(this.lLogLabel);
             this.Controls.Add(this.cbModule);
@@ -346,6 +362,7 @@
         private System.Windows.Forms.ComboBox cbModule;
         private System.Windows.Forms.Label lLogLabel;
         private System.Windows.Forms.LinkLabel lLog;
+        private System.Windows.Forms.CheckBox cbJSEnabled;
     }
 }
 
