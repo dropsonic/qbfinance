@@ -129,6 +129,7 @@ namespace QBfinance_auto
             if (e.Done)
             {
                 MessageBox.Show("Задача выполнена!");
+                _started = false;
                 ChangeVisualState();
             }
 
