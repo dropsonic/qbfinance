@@ -131,6 +131,7 @@ namespace QBfinance_auto
                 MessageBox.Show("Задача выполнена!");
                 _started = false;
                 ChangeVisualState();
+                ShowLogFile();
             }
 
             lQueriesCount.Text = e.Queries.ToString();
@@ -160,6 +161,11 @@ namespace QBfinance_auto
         }
 
         private void lLog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ShowLogFile();
+        }
+
+        private void ShowLogFile()
         {
             Process.Start(lLog.Text);
         }
