@@ -50,7 +50,7 @@
             this.lMaxTime = new System.Windows.Forms.Label();
             this.cbModule = new System.Windows.Forms.ComboBox();
             this.lLogLabel = new System.Windows.Forms.Label();
-            this.lLog = new System.Windows.Forms.Label();
+            this.lLog = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.udQueryInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udProxyTimeout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udMaxTime)).BeginInit();
@@ -259,7 +259,7 @@
             // 
             this.cbModule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbModule.FormattingEnabled = true;
-            this.cbModule.Location = new System.Drawing.Point(178, 198);
+            this.cbModule.Location = new System.Drawing.Point(178, 204);
             this.cbModule.Name = "cbModule";
             this.cbModule.Size = new System.Drawing.Size(222, 21);
             this.cbModule.TabIndex = 21;
@@ -281,15 +281,17 @@
             this.lLog.MaximumSize = new System.Drawing.Size(400, 0);
             this.lLog.Name = "lLog";
             this.lLog.Size = new System.Drawing.Size(113, 13);
-            this.lLog.TabIndex = 23;
+            this.lLog.TabIndex = 24;
+            this.lLog.TabStop = true;
             this.lLog.Text = "Имя файла с логами";
             this.lLog.Visible = false;
+            this.lLog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLog_LinkClicked);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 332);
+            this.ClientSize = new System.Drawing.Size(581, 359);
             this.Controls.Add(this.lLog);
             this.Controls.Add(this.lLogLabel);
             this.Controls.Add(this.cbModule);
@@ -343,7 +345,7 @@
         private System.Windows.Forms.Label lMaxTime;
         private System.Windows.Forms.ComboBox cbModule;
         private System.Windows.Forms.Label lLogLabel;
-        private System.Windows.Forms.Label lLog;
+        private System.Windows.Forms.LinkLabel lLog;
     }
 }
 

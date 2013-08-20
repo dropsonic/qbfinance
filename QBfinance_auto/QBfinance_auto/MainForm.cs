@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -153,6 +154,11 @@ namespace QBfinance_auto
                         yield return (ModuleBase)Activator.CreateInstance(type);
                 }
             }
+        }
+
+        private void lLog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(lLog.Text);
         }
     }
 }

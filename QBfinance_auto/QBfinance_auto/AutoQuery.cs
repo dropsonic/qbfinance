@@ -75,6 +75,7 @@ namespace QBfinance_auto
 
             FirefoxProfile profile = new FirefoxProfile();
             profile.SetPreference("javascript.enabled", false);
+            
             IWebDriver driver = new FirefoxDriver(profile);
             driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromMilliseconds(_proxyTimeout));
             driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromMilliseconds(_proxyTimeout));
