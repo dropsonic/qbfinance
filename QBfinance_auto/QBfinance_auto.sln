@@ -18,9 +18,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexModule", "YandexModul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleModule", "GoogleModule\GoogleModule.csproj", "{0D65DE54-4D21-4D23-9C2B-1FDD10CEC7C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingModule", "BingModule\BingModule.csproj", "{3DAFA551-66EA-45F8-B70F-97EC62E6D92B}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 6
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://dropsonic.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -36,6 +38,9 @@ Global
 		SccProjectUniqueName4 = YandexModule\\YandexModule.csproj
 		SccProjectName4 = YandexModule
 		SccLocalPath4 = YandexModule
+		SccProjectUniqueName5 = BingModule\\BingModule.csproj
+		SccProjectName5 = BingModule
+		SccLocalPath5 = BingModule
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +63,10 @@ Global
 		{0D65DE54-4D21-4D23-9C2B-1FDD10CEC7C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D65DE54-4D21-4D23-9C2B-1FDD10CEC7C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D65DE54-4D21-4D23-9C2B-1FDD10CEC7C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DAFA551-66EA-45F8-B70F-97EC62E6D92B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DAFA551-66EA-45F8-B70F-97EC62E6D92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DAFA551-66EA-45F8-B70F-97EC62E6D92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DAFA551-66EA-45F8-B70F-97EC62E6D92B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

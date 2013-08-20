@@ -306,7 +306,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 445);
+            this.ClientSize = new System.Drawing.Size(581, 395);
             this.Controls.Add(this.cbJSEnabled);
             this.Controls.Add(this.lLog);
             this.Controls.Add(this.lLogLabel);
