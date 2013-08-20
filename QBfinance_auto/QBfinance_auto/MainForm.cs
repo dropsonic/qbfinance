@@ -130,8 +130,8 @@ namespace QBfinance_auto
             {
                 MessageBox.Show("Задача выполнена!");
                 _started = false;
-                ChangeVisualState();
                 ShowLogFile();
+                ChangeVisualState();
             }
 
             lQueriesCount.Text = e.Queries.ToString();
