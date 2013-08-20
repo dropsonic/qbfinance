@@ -113,6 +113,7 @@ namespace QBfinance_auto
             udQueryInterval.Enabled = !_started;
             udProxyTimeout.Enabled = !_started;
             udMaxTime.Enabled = !_started;
+            cbJSEnabled.Enabled = !_started;
             cbModule.Enabled = !_started;
             lLogLabel.Visible = _started;
             lLog.Visible = _started;

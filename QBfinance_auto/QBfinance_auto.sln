@@ -20,9 +20,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleModule", "GoogleModul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingModule", "BingModule\BingModule.csproj", "{3DAFA551-66EA-45F8-B70F-97EC62E6D92B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooModule", "YahooModule\YahooModule.csproj", "{B9324068-DF48-4E21-9BAF-25E52C02A53E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailRuModule", "MailRuModule\MailRuModule.csproj", "{CD91EB7B-C518-451B-B7E9-2DCA026CB867}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaiduModule", "BaiduModule\BaiduModule.csproj", "{ED77EF5C-9BA0-4B6D-B616-634F096CBA1D}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
+		SccNumberOfProjects = 9
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://dropsonic.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -41,6 +47,15 @@ Global
 		SccProjectUniqueName5 = BingModule\\BingModule.csproj
 		SccProjectName5 = BingModule
 		SccLocalPath5 = BingModule
+		SccProjectUniqueName6 = YahooModule\\YahooModule.csproj
+		SccProjectName6 = YahooModule
+		SccLocalPath6 = YahooModule
+		SccProjectUniqueName7 = MailRuModule\\MailRuModule.csproj
+		SccProjectName7 = MailRuModule
+		SccLocalPath7 = MailRuModule
+		SccProjectUniqueName8 = BaiduModule\\BaiduModule.csproj
+		SccProjectName8 = BaiduModule
+		SccLocalPath8 = BaiduModule
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +82,18 @@ Global
 		{3DAFA551-66EA-45F8-B70F-97EC62E6D92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DAFA551-66EA-45F8-B70F-97EC62E6D92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DAFA551-66EA-45F8-B70F-97EC62E6D92B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9324068-DF48-4E21-9BAF-25E52C02A53E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9324068-DF48-4E21-9BAF-25E52C02A53E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9324068-DF48-4E21-9BAF-25E52C02A53E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9324068-DF48-4E21-9BAF-25E52C02A53E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD91EB7B-C518-451B-B7E9-2DCA026CB867}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD91EB7B-C518-451B-B7E9-2DCA026CB867}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD91EB7B-C518-451B-B7E9-2DCA026CB867}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD91EB7B-C518-451B-B7E9-2DCA026CB867}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED77EF5C-9BA0-4B6D-B616-634F096CBA1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED77EF5C-9BA0-4B6D-B616-634F096CBA1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED77EF5C-9BA0-4B6D-B616-634F096CBA1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED77EF5C-9BA0-4B6D-B616-634F096CBA1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

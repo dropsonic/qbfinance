@@ -1,32 +1,32 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OpenQA.Selenium;
 
 namespace QBfinance_auto.Modules
 {
-    public class BingModule : ModuleBase
+    public class MailRuModule : ModuleBase
     {
         public override string Name
         {
-            get { return "Bing"; }
+            get { return "Mail.ru"; }
         }
 
         public override string BaseUrl
         {
-            get { return "http://www.bing.com"; }
+            get { return "http://mail.ru"; }
         }
 
         public override void DoQuery(IWebDriver driver, string query)
         {
             driver.Navigate().GoToUrl(BaseUrl);
-            IWebElement text = driver.FindElement(By.Id("sb_form_q"));
+            IWebElement text = driver.FindElement(By.Id("q"));
             text.Click();
             text.Clear();
             text.SendKeys(query);
-            IWebElement button = driver.FindElement(By.Id("sb_form_go"));
+            IWebElement button = driver.FindElement(By.Id("search__button__wrapper__field"));
             button.Click();
         }
     }

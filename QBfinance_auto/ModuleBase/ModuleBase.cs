@@ -26,12 +26,18 @@ namespace QBfinance_auto.Modules
         /// <summary>
         /// Метод для проверки заголовка страницы на капчу и т.п.
         /// </summary>
-        public abstract bool CheckTitle(string title, string query);
+        public virtual bool CheckTitle(string title, string query)
+        {
+            return title.Contains(query);
+        }
 
         /// <summary>
         /// Метод для проверки адреса страницы на капчу и т.п.
         /// </summary>
-        public abstract bool CheckUrl(string url);
+        public virtual bool CheckUrl(string url)
+        {
+            return url.Contains("search");
+        }
 
         public override string ToString()
         {
