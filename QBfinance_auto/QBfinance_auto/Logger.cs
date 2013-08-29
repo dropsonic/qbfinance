@@ -9,15 +9,24 @@ namespace QBfinance_auto
 {
     public class Logger : ILogger
     {
+        string _fileName;
         StreamWriter _writer;
+        bool _opened = false;
 
         public Logger(string fileName)
         {
-            _writer = File.CreateText(fileName);
+            _fileName = fileName;
+            _writer = File.CreateText(_fileName);
+            _opened = true;
         }
 
         public void WriteLine(string line)
         {
+            if (!_opened)
+            {
+                _writer = new StreamWriter(_fileName, true);
+                _opened = true;
+            }
             _writer.WriteLine(line);
             _writer.Flush();
         }
@@ -25,6 +34,7 @@ namespace QBfinance_auto
         public void Close()
         {
             _writer.Close();
+            _opened = false;
         }
     }
 }
