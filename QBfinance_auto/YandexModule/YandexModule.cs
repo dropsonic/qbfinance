@@ -33,7 +33,7 @@ namespace QBfinance_auto.Modules
             text.Click();
             text.Clear();
             text.SendKeys(query);
-            IWebElement button = driver.FindElement(By.CssSelector("input.b-form-button__input"));
+            IWebElement button = driver.FindElement(By.CssSelector("b-form-button__input"));
             button.Click();
         }
 
